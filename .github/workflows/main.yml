@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 999999
 
     steps:
+    - name: Downloading Essentials
+      run: |
+        choco install googlechrome --ignore-checksums -y
     - name: Downloading Essentials...
       run: |
         # WAIT FOR 3-4 MINUTES 
