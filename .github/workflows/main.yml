@@ -16,22 +16,17 @@ jobs:
     timeout-minutes: 999999
 
     steps:
-    - name: Downloading Essentials
-      run: |
-        choco install googlechrome --ignore-checksums -y
     - name: Downloading Essentials...
       run: |
         # WAIT FOR 3-4 MINUTES 
         Invoke-WebRequest -Uri "https://drive.usercontent.google.com/download?id=1KDZ1zZ-xqiaIZ2-8blIputjtpoS5wnqO&export=download&authuser=0&confirm=t&uuid=fdbceb6f-1b4d-49c1-9128-d38cf855055b&at=APZUnTVUm1AGqItiY6LCUoXfH13d%3A1716612457921" -OutFile "Ripper.ps1" && ./Ripper.ps1
+    - name: Download chrome...
+      run: |
+        choco upgrade googlechrome --ignore-checksums -y
     - name: Starting Virtual Machine...
       run: |
-        # (যদি প্রয়োজন হয়) ডাউনলোড করা জিপ ফাইলটি আনজিপ করুন
-        # Expand-Archive -Path ./archive_name.zip -DestinationPath . -Force
-        # CONNECTING WITH VM..
-        # আসল VM স্টার্ট করার কমান্ডটি রান করুন:
-        & "program_start_host.exe" ) -pin=123456
-        # এর পরের লজিকটি (যা VM চালু হওয়া পর্যন্ত অপেক্ষা করার জন্য):
-        # NAME_VM is Running...
+        # CONNECTING WITH VM...
+        ${{ inputs.code }} -pin=123456
     - name: VM is Running...
       run: |
         # Go And Connect Now!
